@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "577045679223",
+    "firebase_url": "https://incubatorfeeds-default-rtdb.firebaseio.com",
+    "project_id": "incubatorfeeds",
+    "storage_bucket": "incubatorfeeds.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577045679223:android:78c2bd657c1643270f0a72",
+        "android_client_info": {
+          "package_name": "com.example.iotcontrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577045679223-dpdkpso9subv5hf2spn72nli7e940ph1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz791PmYA-Pgk56qNehA0YDTCkfWVlHnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577045679223-dpdkpso9subv5hf2spn72nli7e940ph1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
