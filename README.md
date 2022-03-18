@@ -1,6 +1,7 @@
 # iotcontrol
 
-A new Flutter project.
+Mobile app interface for an IoT-based egg incubator system to maintain desired temperature and humidity conditions within an enclosed area at optimum
+levels required for embryo growth.
 
 ## Getting Started
 
