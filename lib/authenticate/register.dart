@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:iotcontrol/screens/loading.dart';
 import 'package:iotcontrol/services/auth.dart';
-import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -49,8 +49,8 @@ class _RegisterState extends State<Register> {
               padding: const EdgeInsets.fromLTRB(22, 70, 22, 0),
               child: SingleChildScrollView(
                 child: Container(
-                  height: 315,
-                  width: 400,
+                  constraints: BoxConstraints.expand(
+                      width: double.infinity, height: 315),
                   decoration: BoxDecoration(
                       color: Colors.grey[350],
                       borderRadius: BorderRadius.all(Radius.circular(5))),

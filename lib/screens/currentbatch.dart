@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:iotcontrol/services/database.dart';
 import 'package:provider/provider.dart';
+
 import '../models/user.dart';
 import '../services/database.dart';
 import 'loading.dart';
@@ -60,12 +62,11 @@ class _CurrentBatchState extends State<CurrentBatch> {
                     child: Center(
                         child: SingleChildScrollView(
                       child: Container(
-                        height: 310,
-                        width: 380,
+                        constraints: BoxConstraints.expand(
+                            width: double.infinity, height: 310),
                         decoration: BoxDecoration(
-                            color: Colors.grey[350],
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                          color: Colors.grey[350],
+                        ),
                         child: Column(children: <Widget>[
                           Row(children: <Widget>[
                             SizedBox(

@@ -50,8 +50,8 @@ class _SignInState extends State<SignIn> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(22, 70, 22, 0),
                 child: Container(
-                  height: 315,
-                  width: 400,
+                  constraints: BoxConstraints.expand(
+                      width: double.infinity, height: 315),
                   decoration: BoxDecoration(
                       color: Colors.grey[350],
                       borderRadius: BorderRadius.all(Radius.circular(5))),
