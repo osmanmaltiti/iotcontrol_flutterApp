@@ -1,5 +1,5 @@
-import 'package:iotcontrol/screens/loading.dart';
 import 'package:flutter/material.dart';
+import 'package:iotcontrol/screens/loading.dart';
 import 'package:iotcontrol/services/auth.dart';
 
 class SignIn extends StatefulWidget {
@@ -46,79 +46,81 @@ class _SignInState extends State<SignIn> {
                             color: Colors.amber)))
               ],
             ),
-            body: Padding(
-              padding: const EdgeInsets.fromLTRB(22, 70, 22, 0),
-              child: Container(
-                height: 315,
-                width: 400,
-                decoration: BoxDecoration(
-                    color: Colors.grey[350],
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        validator: (val) =>
-                            val.isEmpty ? 'Enter an Email' : null,
-                        decoration: new InputDecoration(
-                          border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(10),
-                              borderSide: new BorderSide()),
-                          fillColor: Colors.white,
-                          labelText: 'Email',
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(22, 70, 22, 0),
+                child: Container(
+                  height: 315,
+                  width: 400,
+                  decoration: BoxDecoration(
+                      color: Colors.grey[350],
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 20,
                         ),
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        obscureText: true,
-                        validator: (val) =>
-                            val.length < 6 ? 'Enter valid Password' : null,
-                        decoration: new InputDecoration(
-                          border: new OutlineInputBorder(
-                              borderRadius: new BorderRadius.circular(10),
-                              borderSide: new BorderSide()),
-                          fillColor: Colors.white,
-                          labelText: 'Password',
+                        TextFormField(
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter an Email' : null,
+                          decoration: new InputDecoration(
+                            border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(10),
+                                borderSide: new BorderSide()),
+                            fillColor: Colors.white,
+                            labelText: 'Email',
+                          ),
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
                         ),
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      ElevatedButton(
-                          child: Text('Sign In',
-                              style: TextStyle(
-                                  fontFamily: 'customFonts2',
-                                  fontSize: 23,
-                                  color: Colors.white)),
-                          onPressed: () async {
-                            if (_formKey.currentState.validate()) {
-                              setState(() {
-                                loading = true;
-                              });
-                              dynamic result =
-                                  await _auth.signInWithEmail(email, password);
-                              if (result == null) {
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          validator: (val) =>
+                              val.length < 6 ? 'Enter valid Password' : null,
+                          decoration: new InputDecoration(
+                            border: new OutlineInputBorder(
+                                borderRadius: new BorderRadius.circular(10),
+                                borderSide: new BorderSide()),
+                            fillColor: Colors.white,
+                            labelText: 'Password',
+                          ),
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            child: Text('Sign In',
+                                style: TextStyle(
+                                    fontFamily: 'customFonts2',
+                                    fontSize: 23,
+                                    color: Colors.white)),
+                            onPressed: () async {
+                              if (_formKey.currentState.validate()) {
                                 setState(() {
-                                  error = "Could Not Sign In";
-                                  loading = false;
+                                  loading = true;
                                 });
+                                dynamic result = await _auth.signInWithEmail(
+                                    email, password);
+                                if (result == null) {
+                                  setState(() {
+                                    error = "Could Not Sign In";
+                                    loading = false;
+                                  });
+                                }
                               }
-                            }
-                          })
-                    ],
+                            })
+                      ],
+                    ),
                   ),
                 ),
               ),

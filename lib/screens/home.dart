@@ -1,12 +1,13 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:iotcontrol/screens/allrecords.dart';
-import 'package:iotcontrol/screens/newbatch.dart';
 import 'package:iotcontrol/screens/control.dart';
+import 'package:iotcontrol/screens/newbatch.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -131,17 +132,19 @@ class _HomeState extends State<Home> {
           fit: BoxFit.cover,
         )),
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       height: 50,
-                      width: 150,
+                      constraints:
+                          BoxConstraints.expand(width: double.infinity),
                       decoration: BoxDecoration(
                           color: Colors.white54,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -197,15 +200,17 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              Row(children: <Widget>[
-                SizedBox(
-                  width: 40,
-                ),
-              ]),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    SizedBox(
+                      width: 40,
+                    ),
+                  ]),
               SizedBox(height: 30),
               Container(
                   height: 310,
-                  padding: EdgeInsets.fromLTRB(20, 30, 0, 30),
+                  padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
                   decoration: BoxDecoration(
                       color: Colors.white38,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -238,6 +243,7 @@ class _HomeState extends State<Home> {
                     ),
                     SizedBox(height: 20),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Container(
                             height: 170,
@@ -265,9 +271,6 @@ class _HomeState extends State<Home> {
                                         color: Colors.red)),
                               ],
                             )),
-                        SizedBox(
-                          width: 33,
-                        ),
                         Container(
                             height: 170,
                             width: 170,
