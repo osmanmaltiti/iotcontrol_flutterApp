@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -167,130 +168,125 @@ class _PowerState extends State<Power> {
                 }),
           ],
         ),
-        body: SingleChildScrollView(
+        body: FractionallySizedBox(
+          widthFactor: 1,
+          heightFactor: 1,
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
               image: new AssetImage("assets/images/control.jpeg"),
               fit: BoxFit.cover,
             )),
-            child: Column(children: <Widget>[
-              SizedBox(
-                height: 20,
-                width: 100,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Container(
-                    height: 150,
-                    width: 370,
-                    padding: const EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                        color: Colors.black87,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Column(children: <Widget>[
-                      Text(
-                        'Current Status:',
-                        style: TextStyle(
-                            fontFamily: 'customFonts2',
-                            fontSize: 40,
-                            color: Colors.white,
-                            letterSpacing: 1),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        status ?? "...",
-                        style: TextStyle(
-                            fontFamily: 'customFonts2',
-                            fontSize: 70,
-                            letterSpacing: 1,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amber),
-                      )
-                    ])),
-              ),
-              SizedBox(
-                height: 20,
-                width: 340,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Icon(Icons.power_settings_new,
-                    size: 40, color: Colors.white),
-              ),
-              SizedBox(
-                height: 5,
-                width: 340,
-              ),
-              Container(
-                  alignment: Alignment.center,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: TextButton(
-                              onPressed: () async {
-                                setState(() {
-                                  status = "ON";
-                                });
-
-                                final reference = rtdbRef.reference();
-                                await reference
-                                    .child('FirebaseIOT')
-                                    .update({'powerToggle': 1});
-                              },
-                              child: Text(
-                                "On",
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                    width: 100,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Container(
+                        height: 150,
+                        width: 370,
+                        padding: const EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.black87,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Current Status:',
                                 style: TextStyle(
                                     fontFamily: 'customFonts2',
                                     fontSize: 30,
+                                    color: Colors.white,
+                                    letterSpacing: 1),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                status ?? "...",
+                                style: TextStyle(
+                                    fontFamily: 'customFonts2',
+                                    fontSize: 50,
                                     letterSpacing: 1,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              )),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: TextButton(
-                              onPressed: () async {
-                                setState(() {
-                                  status = "OFF";
-                                });
+                                    color: Colors.amber),
+                              )
+                            ])),
+                  ),
+                  SizedBox(
+                    height: 20,
+                    width: 340,
+                  ),
+                  Container(
+                      alignment: Alignment.center,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: TextButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      status = "ON";
+                                    });
 
-                                final reference = rtdbRef.reference();
-                                await reference
-                                    .child('FirebaseIOT')
-                                    .update({'powerToggle': 0});
-                              },
-                              child: Text(
-                                "Off",
-                                style: TextStyle(
-                                    fontFamily: 'customFonts2',
-                                    fontSize: 30,
-                                    letterSpacing: 1,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                        ),
-                      ])),
-              Padding(
-                  padding: EdgeInsets.fromLTRB(20, 30, 20, 0),
-                  child: Container(
+                                    final reference = rtdbRef.reference();
+                                    await reference
+                                        .child('FirebaseIOT')
+                                        .update({'powerToggle': 1});
+                                  },
+                                  child: Text(
+                                    "On",
+                                    style: TextStyle(
+                                        fontFamily: 'customFonts2',
+                                        fontSize: 30,
+                                        letterSpacing: 1,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
+                              child: TextButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      status = "OFF";
+                                    });
+
+                                    final reference = rtdbRef.reference();
+                                    await reference
+                                        .child('FirebaseIOT')
+                                        .update({'powerToggle': 0});
+                                  },
+                                  child: Text(
+                                    "Off",
+                                    style: TextStyle(
+                                        fontFamily: 'customFonts2',
+                                        fontSize: 30,
+                                        letterSpacing: 1,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                            ),
+                          ])),
+                  Container(
                       height: 338.4,
                       decoration: BoxDecoration(
                           color: Colors.black87,
@@ -316,75 +312,66 @@ class _PowerState extends State<Power> {
                                 )),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 5, 0, 20),
-                                child: Container(
-                                  width: 130,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white24,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: TextFormField(
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'CustomFonts2',
-                                        fontSize: 20),
-                                    decoration: new InputDecoration(
-                                      labelText: "Max",
-                                      labelStyle: TextStyle(color: Colors.grey),
-                                      focusedBorder: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(10),
-                                          borderSide: new BorderSide(
-                                              color: Colors.white)),
-                                      enabledBorder: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(10),
-                                          borderSide: new BorderSide(
-                                              color: Colors.white)),
-                                    ),
-                                    onChanged: (val) {
-                                      setState(() => upTemp = int.parse(val));
-                                    },
+                              Container(
+                                width: 130,
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                child: TextFormField(
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'CustomFonts2',
+                                      fontSize: 20),
+                                  decoration: new InputDecoration(
+                                    labelText: "Max",
+                                    labelStyle: TextStyle(color: Colors.grey),
+                                    focusedBorder: new OutlineInputBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(10),
+                                        borderSide: new BorderSide(
+                                            color: Colors.white)),
+                                    enabledBorder: new OutlineInputBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(10),
+                                        borderSide: new BorderSide(
+                                            color: Colors.white)),
                                   ),
+                                  onChanged: (val) {
+                                    setState(() => upTemp = int.parse(val));
+                                  },
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 5, 0, 20),
-                                child: Container(
-                                  width: 130,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white24,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: TextFormField(
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'CustomFonts2',
-                                        fontSize: 20),
-                                    decoration: new InputDecoration(
-                                      labelText: "Min",
-                                      labelStyle: TextStyle(color: Colors.grey),
-                                      focusedBorder: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(10),
-                                          borderSide: new BorderSide(
-                                              color: Colors.white)),
-                                      enabledBorder: new OutlineInputBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(10),
-                                          borderSide: new BorderSide(
-                                              color: Colors.white)),
-                                    ),
-                                    onChanged: (val) {
-                                      setState(() => downTemp = int.parse(val));
-                                    },
+                              Container(
+                                width: 130,
+                                decoration: BoxDecoration(
+                                    color: Colors.white24,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
+                                child: TextFormField(
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'CustomFonts2',
+                                      fontSize: 20),
+                                  decoration: new InputDecoration(
+                                    labelText: "Min",
+                                    labelStyle: TextStyle(color: Colors.grey),
+                                    focusedBorder: new OutlineInputBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(10),
+                                        borderSide: new BorderSide(
+                                            color: Colors.white)),
+                                    enabledBorder: new OutlineInputBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(10),
+                                        borderSide: new BorderSide(
+                                            color: Colors.white)),
                                   ),
+                                  onChanged: (val) {
+                                    setState(() => downTemp = int.parse(val));
+                                  },
                                 ),
                               ),
                               Padding(
@@ -441,8 +428,7 @@ class _PowerState extends State<Power> {
                                 )),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Padding(
                                 padding:
@@ -521,8 +507,8 @@ class _PowerState extends State<Power> {
                             ],
                           ),
                         ],
-                      )))
-            ]),
+                      ))
+                ]),
           ),
         ));
   }
